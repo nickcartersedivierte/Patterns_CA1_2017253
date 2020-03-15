@@ -24,7 +24,7 @@ Client(){
    
 }      
  //reference to singleton object country  
- Country country = Country.getInstance();     
+ CountrySingleton country = CountrySingleton.getInstance(); 
 
 // this method displays menu and prompts user to choose action to perform
 public void ShowMenu(){                      
@@ -88,15 +88,13 @@ public void OptionSelected(){
 
 
 }
-
-//this method lists all countries in database
+    
+    //this method lists all countries in database
 public void List(){
 
 
     
-    
-    
-backToMenu();    
+ backToMenu();    
 }
 
 //this method find countries by code
@@ -125,8 +123,8 @@ public void backToMenu(){
                 //If user wants to go back to Menu take them back
                 if(input.equals("Y")){
                     
-                    ShowMenu();      
-                    OptionSelected();
+                   ShowMenu();      
+                   OptionSelected();
                 }
                 
                 //If input is N, user wants to exit program
@@ -138,4 +136,9 @@ public void backToMenu(){
             }catch(Exception e){System.out.println("error");}
        }while(valid == false);
 
-}}
+}
+    
+    
+   
+
+}

@@ -17,10 +17,10 @@ public class Patterns_CA1_2017253 {
     public static void main(String[] args) {
         // TODO code application logic here
             
-     Country country = Country.getInstance();     //instance of class Country
+     CountrySingleton country = CountrySingleton.getInstance();     //instance of class Country
      
           
-     Client clientObj = new Client();             //instance class client
+     Client client = new Client();             //instance class client
      
      
     }
