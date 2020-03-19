@@ -14,15 +14,18 @@ public class Patterns_CA1_2017253 {
     /**
      * @param args the command line arguments
      */
+    
+    
     public static void main(String[] args) {
         // TODO code application logic here
             
-     CountrySingleton country = CountrySingleton.getInstance();     //instance of class Country
-     
-          
+     Country country = Country.getInstance();     //instance of class Country         
      Client client = new Client();             //instance class client
      
-     
+     CountryDAO dao = new CountryDAO();    
+    
     }
+    
+    
     
 }

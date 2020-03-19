@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -9,52 +9,54 @@ package patterns_ca1_2017253;
  *
  * @author Ana Ospitaletche
  */
-public class CountrySingleton {
+public class Country {
     
-    private char Code;
-    private char Name;
-    private float SurfaceArea;
-    private char HeadOfState;
+     int Code;
+     String Name;
+     float SurfaceArea;
+     String HeadOfState;
     
     //private constructor
-    private CountrySingleton() {
+    private Country() {
     }
     
-    private static CountrySingleton country = new CountrySingleton();     //static instance
+    //static instance
+    private static Country country = new Country();     
     
-     public static CountrySingleton getInstance() {            //public, static method
+    //public, static method
+    public static Country getInstance() {           
 		return country;
 	}
 
-     
-    public char getCode(){
+   /*  
+    public int getCode(){
     
         return Code;
     
     }
     
-    public void setCode(char Code){
+    public void setCode(int Code){
     
         this.Code = Code;
     }
     
-    public char getName(){
+    public String getName(){
     
         return Name;
     
     }
     
-    public void setName(char Name){
+    public void setName(String Name){
     
         this.Name = Name;
     }
-    public char getHeadfState(){
+    public String getHeadfState(){
     
         return HeadOfState;
     
     }
     
-    public void setHeadOfState(char HeadOfState){
+    public void setHeadOfState(String HeadOfState){
     
         this.HeadOfState = HeadOfState;
     }
@@ -69,18 +71,8 @@ public class CountrySingleton {
     
         this.SurfaceArea = SurfaceArea;
     }
+    */
     
     
-    enum Continent{
-
-        Asia,
-        Europe,
-        NorthAmerica,
-        Africa,
-        Oceania,
-        Antarctica,
-        SouthAmerica;
-  
-}
         
 }

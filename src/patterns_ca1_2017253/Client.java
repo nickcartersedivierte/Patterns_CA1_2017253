@@ -13,6 +13,9 @@ package patterns_ca1_2017253;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Client {
 
@@ -21,11 +24,17 @@ Client(){
         
     ShowMenu();
     OptionSelected();
+    
+    
    
 }      
  //reference to singleton object country  
- CountrySingleton country = CountrySingleton.getInstance(); 
-
+ Country country = Country.getInstance(); 
+ 
+ //instance of CountryDAO class that connects to database
+ CountryDAO dao = new CountryDAO();    
+     
+ 
 // this method displays menu and prompts user to choose action to perform
 public void ShowMenu(){                      
     
@@ -66,12 +75,12 @@ public void OptionSelected(){
     catch(Exception e){System.out.println("error");}
     
     if(answer.equals("1")){
-    
-        List();
+        
+      
     
     }
     else if(answer.equals("2")){
-    
+               
         findByCode();
     
     }
@@ -98,7 +107,19 @@ public void List(){
 }
 
 //this method find countries by code
-public void findByCode(){backToMenu();}
+public void findByCode(){
+    
+    try {
+        System.out.println("Please enter the country Code: ");
+        
+        dao.getCountry(000);
+        
+        backToMenu();
+    
+    } catch (SQLException ex) {
+       System.out.println(ex);
+    }
+}
 
 //this method finds countries by name
 public void findByName(){backToMenu();}
