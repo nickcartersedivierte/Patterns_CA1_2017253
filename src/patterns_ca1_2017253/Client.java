@@ -82,6 +82,7 @@ public void OptionSelected(){
     else if(answer.equals("2")){
                
         findByCode();
+        backToMenu();
     
     }
     else if(answer.equals("3")){
@@ -114,7 +115,7 @@ public void findByCode(){
         
         dao.getCountry(000);
         
-        backToMenu();
+        
     
     } catch (SQLException ex) {
        System.out.println(ex);

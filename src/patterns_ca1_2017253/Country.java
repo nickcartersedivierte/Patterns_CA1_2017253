@@ -28,7 +28,7 @@ public class Country {
 		return country;
 	}
 
-   /*  
+   
     public int getCode(){
     
         return Code;
@@ -71,7 +71,7 @@ public class Country {
     
         this.SurfaceArea = SurfaceArea;
     }
-    */
+    
     
     
         

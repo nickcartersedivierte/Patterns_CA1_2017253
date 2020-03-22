@@ -41,7 +41,7 @@ public class CountryDAO {
                 
                 c.Code = Code;
                 Class.forName ("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/world", "cctstudent", "Pass1234!");
+                Connection con = DriverManager.getConnection("jdbc:mysql://52.50.23.197:3306/world", "cctstudent", "Pass1234!");
                 Statement st = con.createStatement();
                 ResultSet result = st.executeQuery(query);
                 result.next();
