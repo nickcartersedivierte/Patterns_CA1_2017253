@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -26,10 +27,9 @@ Client(){
     OptionSelected();
     
     
-   
 }      
  
- 
+ CountryDAO dao = new MySqlCountryDAO();
      
  
 // this method displays menu and prompts user to choose action to perform
@@ -73,8 +73,8 @@ public void OptionSelected(){
     
     if(answer.equals("1")){
         
-      
-    
+      List();
+      backToMenu();
     }
     else if(answer.equals("2")){
                
@@ -99,7 +99,8 @@ public void OptionSelected(){
     //this method lists all countries in database
 public void List(){
 
-
+ArrayList<Country> countries = dao.getCountries();
+System.out.println(countries);
     
  backToMenu();    
 }
@@ -110,17 +111,29 @@ public void findByCode(){
     
         System.out.println("Please enter the country Code: ");
         
-      
+        Country c = dao.findCountrybyCode("000");
+        System.out.println(c);
         
         
     
 }
 
 //this method finds countries by name
-public void findByName(){backToMenu();}
+public void findByName(){
+    
+    System.out.println("Please enter the country Name: ");
+        
+        Country c = dao.findCountrybyName("Norway");
+        System.out.println(c);
+    
+    backToMenu();}
 
 //this method saves new country to database
-public void SaveNewCountry(){backToMenu();}
+public void SaveNewCountry(){
+    
+    
+    
+    backToMenu();}
 
 
 //method to allow user chosing if to exit or do another thing in program

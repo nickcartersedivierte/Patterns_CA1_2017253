@@ -18,22 +18,14 @@ public class Patterns_CA1_2017253 {
     public static void main(String[] args) {
         // TODO code application logic here
             
+          Client client = new Client();
           
-                //instance class client
+          client.ShowMenu();
+          client.OptionSelected();
+          
+      
+     
     
-     CountryDAO dao = new MySqlCountryDAO();
-     
-     ArrayList<Country> countries = dao.getCountries();
-     System.out.println(countries);
-     
-    /*Country c = dao.findCountrybyCode("000");
-    System.out.println(c);*/
-     
-     
-     Country coun = dao.findCountrybyName("Norway");
-     System.out.println(coun);
-    
-     
      
      
     }

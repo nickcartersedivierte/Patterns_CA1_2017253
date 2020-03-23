@@ -27,6 +27,7 @@ public class MySqlCountryDAO implements CountryDAO {
         ResultSet rs = db.select(query);
         String Code = "";
         String Name = "";
+        String Continent = "";
         float SurfaceArea = 0;
         String HeadOfState = "";
        
@@ -37,10 +38,11 @@ public class MySqlCountryDAO implements CountryDAO {
             while(rs.next()){
                 Code =  rs.getString(1);
                 Name = rs.getString(2);
+                Continent = rs.getString(3);
                 SurfaceArea = rs.getFloat(4);
                 HeadOfState = rs.getString(5);
                 
-                c = new Country(Code, Name, SurfaceArea, HeadOfState);
+                c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
                 countries.add(c);
         }
         }catch (SQLException e){
@@ -65,9 +67,10 @@ public class MySqlCountryDAO implements CountryDAO {
             rs.next();
             
              String Name = rs.getString(2);
+             String Continent = rs.getString(3);
              float SurfaceArea = rs.getFloat(4);
              String HeadOfState = rs.getString(5);
-             c = new Country(Code, Name, SurfaceArea, HeadOfState);
+             c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
 			
             // CLOSING THE CONNECTION TO THE DATABASE
             db.close();         
@@ -91,9 +94,10 @@ public class MySqlCountryDAO implements CountryDAO {
             rs.next();
             
              String Code = rs.getString(1);
+             String Continent = rs.getString(3);
              float SurfaceArea = rs.getFloat(4);
              String HeadOfState = rs.getString(5);
-             c = new Country(Code, Name, SurfaceArea, HeadOfState);
+             c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
 			
             // CLOSING THE CONNECTION TO THE DATABASE
             db.close();         
@@ -118,7 +122,7 @@ public class MySqlCountryDAO implements CountryDAO {
             String HeadOfState = country.getHeadOfState();
             float SurfaceArea = country.getSurfaceArea();
             
-            String query = "insert into customer (Name, HeadOfState, SurfaceArea) values ('" + Name + "', " + HeadOfState + ", '" + SurfaceArea + "')";
+            String query = "insert into country (Name, HeadOfState, SurfaceArea) values ('" + Name + "','" + HeadOfState + "', '" + SurfaceArea + "')";
             
             return db.SaveToDb(query);
             

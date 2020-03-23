@@ -15,14 +15,16 @@ public class Country {
     private String Name;
     private float SurfaceArea;
     private String HeadOfState;
+    private String Continent;
     
     
-    public Country(String Code, String Name, float SurfaceArea, String HeadOfState) {
+    public Country(String Code, String Name, String Continent, float SurfaceArea, String HeadOfState) {
         
         this.Code = Code;
         this.HeadOfState = HeadOfState;
         this.Name = Name;
         this.SurfaceArea = SurfaceArea;
+        this.Continent = Continent;
     }
    
     public String getCode(){
@@ -68,9 +70,20 @@ public class Country {
         this.SurfaceArea = SurfaceArea;
     }
     
+    public String getContinent(){
+    
+        return Continent;
+    }
+    
+    public void setContinent(String Continent) {
+    
+    this.Continent = Continent;
+    
+    }
+    
     @Override
 	public String toString() {
-		return "Code: " + Code + " Name: " + Name + " Surface Area: " + SurfaceArea + " Head of State: " + HeadOfState;
+		return "Code: " + Code + " Name: " + Name + " Continent: " + Continent + " Surface Area: " + SurfaceArea + " Head of State: " + HeadOfState;
 	}	
 
 }
