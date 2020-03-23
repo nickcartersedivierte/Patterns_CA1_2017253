@@ -28,11 +28,8 @@ Client(){
     
    
 }      
- //reference to singleton object country  
- Country country = Country.getInstance(); 
  
- //instance of CountryDAO class that connects to database
- CountryDAO dao = new CountryDAO();    
+ 
      
  
 // this method displays menu and prompts user to choose action to perform
@@ -110,16 +107,13 @@ public void List(){
 //this method find countries by code
 public void findByCode(){
     
-    try {
+    
         System.out.println("Please enter the country Code: ");
         
-        dao.getCountry(000);
+      
         
         
     
-    } catch (SQLException ex) {
-       System.out.println(ex);
-    }
 }
 
 //this method finds countries by name

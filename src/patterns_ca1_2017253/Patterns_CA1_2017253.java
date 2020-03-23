@@ -5,25 +5,37 @@
  */
 package patterns_ca1_2017253;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Ana Ospitaletche
  */
 public class Patterns_CA1_2017253 {
 
-    /**
-     * @param args the command line arguments
-     */
-    
+      
     
     public static void main(String[] args) {
         // TODO code application logic here
             
-     Country country = Country.getInstance();     //instance of class Country         
-     Client client = new Client();             //instance class client
-     
-     CountryDAO dao = new CountryDAO();    
+          
+                //instance class client
     
+     CountryDAO dao = new MySqlCountryDAO();
+     
+     ArrayList<Country> countries = dao.getCountries();
+     System.out.println(countries);
+     
+    /*Country c = dao.findCountrybyCode("000");
+    System.out.println(c);*/
+     
+     
+     Country coun = dao.findCountrybyName("Norway");
+     System.out.println(coun);
+    
+     
+     
+     
     }
     
     

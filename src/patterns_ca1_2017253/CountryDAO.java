@@ -8,57 +8,19 @@ package patterns_ca1_2017253;
 /**
  *
  * @author Ana Ospitaletche
- *
  */
 
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+ import java.util.ArrayList;
 
 
-public class CountryDAO {
+//This interface has the methods that will take information from database 
+
+public interface CountryDAO {
     
-                
-     
-     
-    
-       
-        //this method will be to search a country by Code
-        //it should display Name of the country, head of state and Area
-        public Country getCountry (int Code) throws SQLException{
-            
-            Country c = Country.getInstance(); 
-            
-            try {
-                String query = "select Name, Continent, HeadOfState, SurfaceArea from country where Code="+Code;
-                
-                c.Code = Code;
-                Class.forName ("com.mysql.jdbc.Driver");
-                Connection con = DriverManager.getConnection("jdbc:mysql://52.50.23.197:3306/world", "cctstudent", "Pass1234!");
-                Statement st = con.createStatement();
-                ResultSet result = st.executeQuery(query);
-                result.next();
-                String name = result.getString(2);
-                c.Name = name;
-                return c; 
-            
-            } catch (ClassNotFoundException ex) {
-                System.out.println(ex);
-            }    
-            
-             return null;            
-           
-        }
-    
-    }
+        public ArrayList<Country> getCountries();
+	public Country findCountrybyCode(String Code);
+        public Country findCountrybyName (String Name);
+	public boolean saveCountry(Country country);
+        
 
-
-
-
+}

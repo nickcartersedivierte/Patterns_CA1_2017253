@@ -11,31 +11,27 @@ package patterns_ca1_2017253;
  */
 public class Country {
     
-     int Code;
-     String Name;
-     float SurfaceArea;
-     String HeadOfState;
+    private String Code;
+    private String Name;
+    private float SurfaceArea;
+    private String HeadOfState;
     
-    //private constructor
-    private Country() {
+    
+    public Country(String Code, String Name, float SurfaceArea, String HeadOfState) {
+        
+        this.Code = Code;
+        this.HeadOfState = HeadOfState;
+        this.Name = Name;
+        this.SurfaceArea = SurfaceArea;
     }
-    
-    //static instance
-    private static Country country = new Country();     
-    
-    //public, static method
-    public static Country getInstance() {           
-		return country;
-	}
-
    
-    public int getCode(){
+    public String getCode(){
     
         return Code;
     
     }
     
-    public void setCode(int Code){
+    public void setCode(String Code){
     
         this.Code = Code;
     }
@@ -50,7 +46,7 @@ public class Country {
     
         this.Name = Name;
     }
-    public String getHeadfState(){
+    public String getHeadOfState(){
     
         return HeadOfState;
     
@@ -72,7 +68,13 @@ public class Country {
         this.SurfaceArea = SurfaceArea;
     }
     
+    @Override
+	public String toString() {
+		return "Code: " + Code + " Name: " + Name + " Surface Area: " + SurfaceArea + " Head of State: " + HeadOfState;
+	}	
+
+}
+
     
     
         
-}
