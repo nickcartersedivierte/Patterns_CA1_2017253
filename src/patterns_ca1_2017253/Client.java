@@ -85,11 +85,13 @@ public void OptionSelected(){
     else if(answer.equals("3")){
     
         findByName();
+        backToMenu();
     
     }
     else if(answer.equals("4")){
     
         SaveNewCountry();
+        backToMenu();
     
     }
 
@@ -123,17 +125,28 @@ public void findByName(){
     
     System.out.println("Please enter the country Name: ");
         
-        Country c = dao.findCountrybyName("Norway");
-        System.out.println(c);
+        Country d = dao.findCountrybyName("alibaba");
+        System.out.println(d);
     
     backToMenu();}
 
 //this method saves new country to database
 public void SaveNewCountry(){
     
+    CountryDAO db = new MySqlCountryDAO();
+    ArrayList<Country> countries = dao.getCountries();
     
+    System.out.println("Please provide the following information: Code, Name, Continent, Surface Area, Head of state ");
     
-    backToMenu();}
+    Country newCountry = new Country("6a6", "Mordor", "Asia", 12444, "Sauron");
+		
+    countries.add(newCountry);
+		
+ // ADDING THE NEW CUSTOMER INTO THE DATABASE
+  System.out.println(db.saveCountry(newCountry));		
+		  
+    backToMenu();
+}
 
 
 //method to allow user chosing if to exit or do another thing in program

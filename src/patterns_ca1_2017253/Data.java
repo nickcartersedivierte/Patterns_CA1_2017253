@@ -57,7 +57,7 @@ public class Data {
 		}
 	}
     
-    public ResultSet select(String query) {
+   public ResultSet select(String query) {
 		try {
 			 rs = stmt.executeQuery( query ) ;
 		} catch (SQLException e) {
@@ -70,7 +70,7 @@ public class Data {
     
     //This method saves data to the database
     
-    public boolean SaveToDb(String query){
+   public boolean SaveToDb(String query){
     
         try {
             stmt.execute(query);  //this method
@@ -82,7 +82,7 @@ public class Data {
                         return false;	
                     }   
     }
-    
+   
     //This method closes the connection to the database
     public void close() {
 		try {

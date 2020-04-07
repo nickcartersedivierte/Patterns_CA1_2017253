@@ -59,7 +59,7 @@ public class MySqlCountryDAO implements CountryDAO {
     @Override
     public Country findCountrybyCode(String Code) {
         Country c = null;
-        String query = "select * from country where Code = " + Code + ";";
+        String query = "SELECT * FROM country WHERE Code = " + Code + ";";
         Data db = new Data();
         ResultSet rs = db.select(query);
         
@@ -84,7 +84,7 @@ public class MySqlCountryDAO implements CountryDAO {
 
     @Override
     public Country findCountrybyName(String Name) {
-        Country c = null;
+        Country d = null;
         String query =  "SELECT * FROM country WHERE Name = " + Name + ";";
        
         Data db = new Data();
@@ -97,7 +97,7 @@ public class MySqlCountryDAO implements CountryDAO {
              String Continent = rs.getString(3);
              float SurfaceArea = rs.getFloat(4);
              String HeadOfState = rs.getString(5);
-             c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
+             d = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
 			
             // CLOSING THE CONNECTION TO THE DATABASE
             db.close();         
@@ -106,7 +106,7 @@ public class MySqlCountryDAO implements CountryDAO {
                 e.printStackTrace();
         
         }
-        return c;
+        return d;
         }
 
     
@@ -116,19 +116,38 @@ public class MySqlCountryDAO implements CountryDAO {
 
     @Override
     public  boolean saveCountry(Country country) {
+                
+                // FROM THE OBJECT, GETTING THE DATA
+		String Name = country.getName();
+                String HeadOfState = country.getHeadOfState();
+                String Continent = country.getContinent();
+                float SurfaceArea = country.getSurfaceArea();
+                String Code = country.getCode();
+		
+		// THIS METHOD IS IN CHARGE OF CREATING THE QUERY
+		String query = "INSERT into country (Code, Name, Continent, SurfaceArea, HeadOfState) values ('" + Code + "', '" + Name + "'," + Continent + ", '" + SurfaceArea + "', '" + HeadOfState + "')";
+		
+		// REQUESTION TO SAVE THE DATA
+		boolean result = db.SaveToDb(query);
+		
+		// CLOSING THE DATABASE
+		db.close();
+		
+		return result;
+	}
+    
             
-            Data db = new Data();
-            String Name = country.getName();
-            String HeadOfState = country.getHeadOfState();
-            float SurfaceArea = country.getSurfaceArea();
+
             
-            String query = "insert into country (Name, HeadOfState, SurfaceArea) values ('" + Name + "','" + HeadOfState + "', '" + SurfaceArea + "')";
-            
-            return db.SaveToDb(query);
-            
-    }
+           
+        
+       
+      
+        
+       }
     
     
     
     
-}
+    
+
