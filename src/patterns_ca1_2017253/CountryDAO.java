@@ -19,7 +19,7 @@ public interface CountryDAO {
     
         public ArrayList<Country> getCountries();
 	public Country findCountrybyCode(String Code);
-        public Country findCountrybyName (String Name);
+        public ArrayList<Country> findCountrybyName (String Name);
 	public boolean saveCountry(Country country);
         
 

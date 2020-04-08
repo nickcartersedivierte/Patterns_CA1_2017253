@@ -60,7 +60,6 @@ public class MySqlCountryDAO implements CountryDAO {
     public Country findCountrybyCode(String Code) {
         Country c = null;
         String query = "SELECT * FROM country WHERE Code = " + Code + ";";
-        Data db = new Data();
         ResultSet rs = db.select(query);
         
         try{
@@ -72,8 +71,7 @@ public class MySqlCountryDAO implements CountryDAO {
              String HeadOfState = rs.getString(5);
              c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
 			
-            // CLOSING THE CONNECTION TO THE DATABASE
-            db.close();         
+            
        
         }catch (SQLException e){
                 e.printStackTrace();
@@ -83,30 +81,40 @@ public class MySqlCountryDAO implements CountryDAO {
         }
 
     @Override
-    public Country findCountrybyName(String Name) {
+    public ArrayList<Country> findCountrybyName(String Name) {
+        
+        String Code = "";
+        String name = "";
+        String Continent = "";
+        float SurfaceArea = 0;
+        String HeadOfState = "";
+        
+        ArrayList<Country> countries = new ArrayList<Country>();
         Country d = null;
-        String query =  "SELECT * FROM country WHERE Name = " + Name + ";";
+        
+        String query =  "select * from world.country WHERE Name Like '% "+Name+"%';";
        
         Data db = new Data();
         ResultSet rs = db.select(query);
         
         try{
-            rs.next();
-            
-             String Code = rs.getString(1);
-             String Continent = rs.getString(3);
-             float SurfaceArea = rs.getFloat(4);
-             String HeadOfState = rs.getString(5);
-             d = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
+            while(rs.next()){
+                Code =  rs.getString(1);
+                name = rs.getString(2);
+                Continent = rs.getString(3);
+                SurfaceArea = rs.getFloat(4);
+                HeadOfState = rs.getString(5);
+                
+                d = new Country(Code, name, Continent, SurfaceArea, HeadOfState);
+                countries.add(d);
+        }
 			
-            // CLOSING THE CONNECTION TO THE DATABASE
-            db.close();         
-       
+            
         }catch (SQLException e){
                 e.printStackTrace();
         
         }
-        return d;
+        return countries;
         }
 
     
@@ -125,13 +133,12 @@ public class MySqlCountryDAO implements CountryDAO {
                 String Code = country.getCode();
 		
 		// THIS METHOD IS IN CHARGE OF CREATING THE QUERY
-		String query = "INSERT into country (Code, Name, Continent, SurfaceArea, HeadOfState) values ('" + Code + "', '" + Name + "'," + Continent + ", '" + SurfaceArea + "', '" + HeadOfState + "')";
+		String query = "INSERT into country (Code, Name, Continent, SurfaceArea, HeadOfState) values ('" + Code + "', '" + Name + "','" + Continent + "', '" + SurfaceArea + "', '" + HeadOfState + "')";
 		
 		// REQUESTION TO SAVE THE DATA
 		boolean result = db.SaveToDb(query);
 		
-		// CLOSING THE DATABASE
-		db.close();
+	
 		
 		return result;
 	}

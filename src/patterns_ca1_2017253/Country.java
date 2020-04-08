@@ -8,6 +8,9 @@ package patterns_ca1_2017253;
 /**
  *
  * @author Ana Ospitaletche
+ * 
+ * USAR BUILDER PATTERN
+ * 
  */
 public class Country {
     

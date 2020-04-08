@@ -16,6 +16,8 @@ import java.sql.Statement;
  * 
  * This code is based on the code given in the DAO Lecture in Moodle
  * 
+ * Singleton
+ * 
  */
 
 //This class will connect to the database

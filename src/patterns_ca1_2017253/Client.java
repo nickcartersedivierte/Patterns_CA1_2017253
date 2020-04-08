@@ -115,9 +115,7 @@ public void findByCode(){
         
         Country c = dao.findCountrybyCode("000");
         System.out.println(c);
-        
-        
-    
+                  
 }
 
 //this method finds countries by name
@@ -125,8 +123,8 @@ public void findByName(){
     
     System.out.println("Please enter the country Name: ");
         
-        Country d = dao.findCountrybyName("alibaba");
-        System.out.println(d);
+        ArrayList<Country> countries = dao.findCountrybyName("state");
+        System.out.println(countries);
     
     backToMenu();}
 

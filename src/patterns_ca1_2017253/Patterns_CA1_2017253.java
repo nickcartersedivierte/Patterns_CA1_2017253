@@ -22,11 +22,7 @@ public class Patterns_CA1_2017253 {
           
           client.ShowMenu();
           client.OptionSelected();
-          
-      
-     
-    
-     
+       
      
     }
     
