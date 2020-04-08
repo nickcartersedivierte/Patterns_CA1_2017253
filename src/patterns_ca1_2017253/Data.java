@@ -14,8 +14,7 @@ import java.sql.Statement;
  *
  * @author Ana Ospitaletche
  * 
- * This code is based on the code given in the DAO Lecture in Moodle
- * 
+ *  
  * Singleton
  * 
  */
@@ -30,17 +29,20 @@ public class Data {
         private Statement stmt;
         private  Connection conn;
         private ResultSet rs = null;
-
-   
-        public Data() {
         
-        		
+        //private single instance
+        private static Data instance = new Data();
+   
+        //priate constructor
+        private Data() {
+        
+        	
 		try{
 			// Get a connection to the database
 			conn = DriverManager.getConnection( db, un, pw ) ;
 
 			// Get a statement from the connection
-			 stmt = conn.createStatement() ;	
+			 stmt = conn.createStatement();	
 		}
 		catch( SQLException se ){
 			System.out.println( "SQL Exception:" ) ;
@@ -58,8 +60,13 @@ public class Data {
 			System.out.println( e ) ;
 		}
 	}
-    
-   public ResultSet select(String query) {
+   
+     //Singleton getter of the Data instance   
+    public static Data getInstance() {
+		return instance;
+	}
+   
+    public ResultSet select(String query) {
 		try {
 			 rs = stmt.executeQuery( query ) ;
 		} catch (SQLException e) {

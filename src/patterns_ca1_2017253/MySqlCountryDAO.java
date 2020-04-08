@@ -15,8 +15,10 @@ import java.util.ArrayList;
  */
 public class MySqlCountryDAO implements CountryDAO {
     
+        Data db = Data.getInstance();
+
     
-        Data db = new Data();
+      //  Data db = new Data();
 
     @Override
     public ArrayList<Country> getCountries() {
@@ -94,7 +96,8 @@ public class MySqlCountryDAO implements CountryDAO {
         
         String query =  "select * from world.country WHERE Name Like '% "+Name+"%';";
        
-        Data db = new Data();
+       Data db = Data.getInstance();
+
         ResultSet rs = db.select(query);
         
         try{
