@@ -60,10 +60,12 @@ public class MySqlCountryDAO implements CountryDAO {
     
     @Override
     public Country findCountrybyCode(String Code) {
+        
         Country c = null;
         String query = "SELECT * FROM country WHERE Code = " + Code + ";";
         ResultSet rs = db.select(query);
-        
+    
+    
         try{
             rs.next();
             
@@ -71,8 +73,9 @@ public class MySqlCountryDAO implements CountryDAO {
              String Continent = rs.getString(3);
              float SurfaceArea = rs.getFloat(4);
              String HeadOfState = rs.getString(5);
-             c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
-			
+             
+             Country.CountryBuilder c1 = new Country.CountryBuilder(Code, Name, Continent);
+             Country coun = c1.build();	
             
        
         }catch (SQLException e){
@@ -108,7 +111,8 @@ public class MySqlCountryDAO implements CountryDAO {
                 SurfaceArea = rs.getFloat(4);
                 HeadOfState = rs.getString(5);
                 
-                d = new Country(Code, name, Continent, SurfaceArea, HeadOfState);
+                
+         d = new Country(Code, name, Continent, SurfaceArea, HeadOfState);
                 countries.add(d);
         }
 			

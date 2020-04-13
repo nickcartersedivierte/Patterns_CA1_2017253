@@ -13,10 +13,12 @@ package patterns_ca1_2017253;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static javafx.application.Platform.exit;
 
 public class Client {
 
@@ -104,29 +106,53 @@ public void List(){
 ArrayList<Country> countries = dao.getCountries();
 System.out.println(countries);
     
- backToMenu();    
+  
 }
 
-//this method find countries by code
+//this method finds countries by code
 public void findByCode(){
     
-    
-        System.out.println("Please enter the country Code: ");
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String answer = "";
         
-        Country c = dao.findCountrybyCode("000");
-        System.out.println(c);
+        do{
+            try{
+                System.out.println("Please enter the country Code: ");
+                answer = input.readLine();
+                Country c = dao.findCountrybyCode(answer);
+                System.out.println(c);
+            
+            }catch(IOException e){
+               e.printStackTrace();
+            
+            } }while(!Correct(answer));
                   
 }
+//Validation
+ public boolean Correct(String answer) {
+		
+                return answer.length() == 3;
+	}
 
 //this method finds countries by name
 public void findByName(){
     
-    System.out.println("Please enter the country Name: ");
+        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+        String answer = "";
         
-        ArrayList<Country> countries = dao.findCountrybyName("state");
-        System.out.println(countries);
+        
+            try{
+                 System.out.println("Please enter the country Name: ");
+                 answer = input.readLine();
+                 ArrayList<Country> countries = dao.findCountrybyName(answer);
+                 System.out.println(countries);
     
-    backToMenu();}
+                
+             }catch(IOException e){
+               e.printStackTrace();
+            
+            }
+            }
 
 //this method saves new country to database
 public void SaveNewCountry(){
@@ -136,12 +162,12 @@ public void SaveNewCountry(){
     
     System.out.println("Please provide the following information: Code, Name, Continent, Surface Area, Head of state ");
     
-    Country newCountry = new Country("6a6", "Mordor", "Asia", 12444, "Sauron");
-		
-    countries.add(newCountry);
+    Country.CountryBuilder builder = new Country.CountryBuilder("", "", "");
+    Country c1 = builder.build();	
+    countries.add(c1);
 		
  // ADDING THE NEW CUSTOMER INTO THE DATABASE
-  System.out.println(db.saveCountry(newCountry));		
+  System.out.println(db.saveCountry(c1));		
 		  
     backToMenu();
 }
@@ -170,7 +196,12 @@ public void backToMenu(){
                 //If input is N, user wants to exit program
                 else if(input.equals("N")){ 
                     System.out.println("You have exited the program");
+                    System.exit(0);
+                }
                 
+                if(!input.equals("Y")& !input.equals("N")){
+                
+                    System.out.println("Please enter a valid option. Y or N only");
                 }
 
             }catch(Exception e){System.out.println("error");}
