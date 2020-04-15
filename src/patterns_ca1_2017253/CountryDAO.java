@@ -13,7 +13,7 @@ package patterns_ca1_2017253;
  import java.util.ArrayList;
 
 
-//This interface has the methods that will take information from database 
+//This interface has the methods that will take information from the database 
 
 public interface CountryDAO {
     

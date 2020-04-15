@@ -17,8 +17,8 @@ public class MySqlCountryDAO implements CountryDAO {
     
         Data db = Data.getInstance();
 
-    
-      //  Data db = new Data();
+       
+      
 
     @Override
     public ArrayList<Country> getCountries() {
@@ -44,7 +44,8 @@ public class MySqlCountryDAO implements CountryDAO {
                 SurfaceArea = rs.getFloat(4);
                 HeadOfState = rs.getString(5);
                 
-                c = new Country(Code, Name, Continent, SurfaceArea, HeadOfState);
+                Country.CountryBuilder c1 = new Country.CountryBuilder(Code, Name, Continent).setHeadOfState(HeadOfState).setSurfaceArea(SurfaceArea);
+                c = c1.build();
                 countries.add(c);
         }
         }catch (SQLException e){
@@ -74,8 +75,8 @@ public class MySqlCountryDAO implements CountryDAO {
              float SurfaceArea = rs.getFloat(4);
              String HeadOfState = rs.getString(5);
              
-             Country.CountryBuilder c1 = new Country.CountryBuilder(Code, Name, Continent);
-             Country coun = c1.build();	
+            Country.CountryBuilder c1 = new Country.CountryBuilder(Code, Name, Continent).setHeadOfState(HeadOfState).setSurfaceArea(SurfaceArea);
+            c = c1.build();	
             
        
         }catch (SQLException e){
@@ -112,8 +113,9 @@ public class MySqlCountryDAO implements CountryDAO {
                 HeadOfState = rs.getString(5);
                 
                 
-         d = new Country(Code, name, Continent, SurfaceArea, HeadOfState);
-                countries.add(d);
+        Country.CountryBuilder c1 = new Country.CountryBuilder(Code, Name, Continent).setHeadOfState(HeadOfState).setSurfaceArea(SurfaceArea);
+        d = c1.build();
+        countries.add(d);
         }
 			
             
@@ -145,18 +147,9 @@ public class MySqlCountryDAO implements CountryDAO {
 		// REQUESTION TO SAVE THE DATA
 		boolean result = db.SaveToDb(query);
 		
-	
-		
 		return result;
 	}
-    
-            
-
-            
-           
-        
-       
-      
+     
         
        }
     

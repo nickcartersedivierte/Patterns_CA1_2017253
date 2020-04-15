@@ -13,7 +13,10 @@ import java.sql.Statement;
  * @author Ana Ospitaletche
  * 
  * This class implements de Singleton Pattern  
- *  
+ * 
+ * I used as a guide for this class 
+ * the code used by myself in previous CAs and provided in the lectures
+ * 
  */
 
 //This class will connect to the database
@@ -24,22 +27,21 @@ public class Data {
 	private String pw = "Pass1234!";
         
         private Statement stmt;
-        private  Connection conn;
+        private Connection conn;
         private ResultSet rs = null;
         
         //private single instance
         private static Data instance = new Data();
    
-        //priate constructor
+        //private constructor
         private Data() {
-        
-        	
+                	
 		try{
 			// Get a connection to the database
 			conn = DriverManager.getConnection( db, un, pw ) ;
 
 			// Get a statement from the connection
-			 stmt = conn.createStatement();	
+			stmt = conn.createStatement();	
 		}
 		catch( SQLException se ){
 			System.out.println( "SQL Exception:" ) ;

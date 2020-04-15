@@ -14,14 +14,16 @@ import java.util.ArrayList;
 public class Patterns_CA1_2017253 {
 
       
-    
+    // This is the main method 
     public static void main(String[] args) {
         // TODO code application logic here
             
-          Client client = new Client();
-          
-          client.ShowMenu();
-          client.OptionSelected();
+         //instance of Client class
+        Client client = new Client();
+         
+        //methods in Client class in charge of displaying the menu and processing the options selected by user
+        client.ShowMenu();
+        client.OptionSelected();
        
      
     }

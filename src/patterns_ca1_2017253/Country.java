@@ -36,6 +36,11 @@ public class Country {
         return Code;
     
     }
+    
+    public void setCode(String Code) {
+        this.Code = Code;
+    }
+
         
     public String getName(){
     
@@ -43,17 +48,28 @@ public class Country {
     
     }
     
+    public void setName(String Name) {
+        this.Name = Name;
+    }
+
     
     public String getHeadOfState(){
     
         return HeadOfState;
     
     }
+    
+    public void setHeadOfState(String HeadOfState) {
+        this.HeadOfState = HeadOfState;
+    }
        
     public float getSurfaceArea(){
     
         return SurfaceArea;
     
+    }
+    public void setSurfaceArea(float SurfaceArea) {
+        this.SurfaceArea = SurfaceArea;
     }
     
    
@@ -62,11 +78,7 @@ public class Country {
         return Continent;
     }
       
-    @Override
-	public String toString() {
-		return "Code: " + Code + " Name: " + Name + " Continent: " + Continent + " Surface Area: " + SurfaceArea + " Head of State: " + HeadOfState;
-	}
-        
+    
     //inner class: Builder of the outer class Country
     public static class CountryBuilder{
         
@@ -106,7 +118,11 @@ public class Country {
 		}
         }
     
-   
+   @Override
+	public String toString() {
+		return "Code: " + Code + " Name: " + Name + " Continent: " + Continent + " Surface Area: " + SurfaceArea + " Head of State: " + HeadOfState;
+	}
+        
 
 }
 

@@ -100,13 +100,12 @@ public void OptionSelected(){
 
 }
     
-    //this method lists all countries in database
+//this method lists all the countries in the database
 public void List(){
 
 ArrayList<Country> countries = dao.getCountries();
 System.out.println(countries);
-    
-  
+      
 }
 
 //this method finds countries by code
@@ -154,7 +153,7 @@ public void findByName(){
             }
             }
 
-//this method saves new country to database
+//this method saves a new country to the database
 public void SaveNewCountry(){
     
     CountryDAO db = new MySqlCountryDAO();
@@ -162,21 +161,22 @@ public void SaveNewCountry(){
     
     System.out.println("Please provide the following information: Code, Name, Continent, Surface Area, Head of state ");
     
-    Country.CountryBuilder builder = new Country.CountryBuilder("", "", "");
+    Country.CountryBuilder builder = new Country.CountryBuilder("00!", "Pepe", "Asia").setHeadOfState("Pablo").setSurfaceArea(122233);
     Country c1 = builder.build();	
     countries.add(c1);
 		
- // ADDING THE NEW CUSTOMER INTO THE DATABASE
+ // ADDING THE NEW COUNTRY TO THE DATABASE
   System.out.println(db.saveCountry(c1));		
 		  
     backToMenu();
 }
 
 
-//method to allow user chosing if to exit or do another thing in program
+//method to allow user to choose if to exit or going back to the Menu
 public void backToMenu(){
-        System.out.println("Back to Menu? Y/N ");
-       boolean valid = false;
+    
+    System.out.println("Back to Menu? Y/N ");
+    boolean valid = false;
        do {    
             try{  
 	          
@@ -199,7 +199,8 @@ public void backToMenu(){
                     System.exit(0);
                 }
                 
-                if(!input.equals("Y")& !input.equals("N")){
+                //validate user input
+                if(!input.equals("Y")& !input.equals("N")){  
                 
                     System.out.println("Please enter a valid option. Y or N only");
                 }
