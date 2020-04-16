@@ -32,7 +32,8 @@ Client(){
 }      
  
  CountryDAO dao = new MySqlCountryDAO();
-     
+  BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+  String answer = "";   
  
 // this method displays menu and prompts user to choose action to perform
 public void ShowMenu(){                      
@@ -52,8 +53,7 @@ public void ShowMenu(){
 //This method gets user choice and validates input
 public void OptionSelected(){                   
 
-    BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-    String answer = "";
+   
     
     try{                                            //this block validates that the user entered  correct option
         boolean correct = false;                    //from the menu (an int from 1 to 4)
@@ -103,43 +103,31 @@ public void OptionSelected(){
 //this method lists all the countries in the database
 public void List(){
 
-ArrayList<Country> countries = dao.getCountries();
-System.out.println(countries);
+            ArrayList<Country> countries = dao.getCountries();
+            System.out.println(countries);
       
 }
 
 //this method finds countries by code
 public void findByCode(){
-    
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String answer = "";
-        
-        do{
+         
             try{
                 System.out.println("Please enter the country Code: ");
                 answer = input.readLine();
-                Country c = dao.findCountrybyCode(answer);
-                System.out.println(c);
+                ArrayList<Country> countries= dao.findCountrybyCode(answer);
+                System.out.println(countries);
             
             }catch(IOException e){
                e.printStackTrace();
             
-            } }while(!Correct(answer));
-                  
+            } 
+        
 }
-//Validation
- public boolean Correct(String answer) {
-		
-                return answer.length() == 3;
-	}
+
 
 //this method finds countries by name
 public void findByName(){
     
-        BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
-        String answer = "";
-        
-        
             try{
                  System.out.println("Please enter the country Name: ");
                  answer = input.readLine();
@@ -158,17 +146,43 @@ public void SaveNewCountry(){
     
     CountryDAO db = new MySqlCountryDAO();
     ArrayList<Country> countries = dao.getCountries();
+        
+            try{
     
-    System.out.println("Please provide the following information: Code, Name, Continent, Surface Area, Head of state ");
+                System.out.println("Please provide the following information: ");
     
-    Country.CountryBuilder builder = new Country.CountryBuilder("00!", "Pepe", "Asia").setHeadOfState("Pablo").setSurfaceArea(122233);
-    Country c1 = builder.build();	
-    countries.add(c1);
+                System.out.println("Code of the Country: ");
+                String Code = input.readLine();
+    
+                System.out.println("Name of the Country: ");
+                String Name = input.readLine();
+    
+                System.out.println("Continet of the Country: ");
+                String Continent = input.readLine();
+    
+                System.out.println("Head Of State of the Country: ");
+                String HeadOfState = input.readLine();
+    
+      
+                System.out.println("Surface Area of the Country: ");
+                float SurfaceArea = 0;
+                String Surf = String.valueOf(SurfaceArea);
+                Surf = input.readLine();
+        
+                Country.CountryBuilder builder = new Country.CountryBuilder(Code, Name, Continent).setHeadOfState(HeadOfState).setSurfaceArea(SurfaceArea);
+                Country c1 = builder.build();	
+                countries.add(c1);
 		
- // ADDING THE NEW COUNTRY TO THE DATABASE
-  System.out.println(db.saveCountry(c1));		
-		  
-    backToMenu();
+                // ADDING THE NEW COUNTRY TO THE DATABASE
+                System.out.println(db.saveCountry(c1));
+    
+                System.out.println("Success!");
+                backToMenu(); 
+    
+        }catch(IOException e){
+               e.printStackTrace();
+            
+            }	
 }
 
 
@@ -207,10 +221,5 @@ public void backToMenu(){
 
             }catch(Exception e){System.out.println("error");}
        }while(valid == false);
-
 }
-    
-    
-   
-
 }

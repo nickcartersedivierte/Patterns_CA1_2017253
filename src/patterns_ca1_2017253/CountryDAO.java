@@ -18,7 +18,7 @@ package patterns_ca1_2017253;
 public interface CountryDAO {
     
         public ArrayList<Country> getCountries();
-	public Country findCountrybyCode(String Code);
+	public ArrayList<Country> findCountrybyCode(String Code);
         public ArrayList<Country> findCountrybyName (String Name);
 	public boolean saveCountry(Country country);
         
