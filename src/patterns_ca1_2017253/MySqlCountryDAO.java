@@ -63,7 +63,7 @@ public class MySqlCountryDAO implements CountryDAO {
     public Country findCountrybyCode(String Code) {
         
         Country c = null;
-        String query = "SELECT * FROM country WHERE Code = " + Code + ";";
+        String query = "SELECT * FROM country WHERE Code = '" + Code + "';";
         ResultSet rs = db.select(query);
     
     
